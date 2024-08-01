@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  caller-workflow:
+  all:
       name: Call Azure Functions WF
       uses: missAnkita/Reusable-Workflows/.github/workflows/app-main.yml@main
       with:
