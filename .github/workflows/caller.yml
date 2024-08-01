@@ -1,0 +1,13 @@
+name: Caller WF AZ functions code
+
+on:
+  workflow_dispatch:
+
+jobs:
+  caller-workflow:
+      name: Call Azure Functions WF
+      uses: missAnkita/Reusable-Workflows/.github/workflows/app-main.yml@main
+      with:
+        runs-on: ubuntu-latest
+        run-tests: false
+        project-folder: .
