@@ -11,3 +11,4 @@ jobs:
         runs-on: ubuntu-latest
         run-tests: false
         project-folder: .
+      secrets: inherit
