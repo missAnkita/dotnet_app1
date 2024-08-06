@@ -1,14 +1,14 @@
-name: Caller WF AZ functions code
+name: Caller for Multilingual WF
 
 on:
   workflow_dispatch:
 
 jobs:
-  all:
+  caller-workflow:
       name: Call Azure Functions WF
       uses: missAnkita/Reusable-Workflows/.github/workflows/multilingual-wf.yml@main
       with:
         runs-on: ubuntu-latest
         run-tests: false
         project-folder: .
-      secrets: inherit
+      #secrets: inherit
