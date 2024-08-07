@@ -2,6 +2,21 @@ name: Caller for Multilingual WF
 
 on:
   workflow_dispatch:
+    inputs:
+      working-directory:
+        description: 'working directory for App code'
+        required: true
+        type: string
+        default: .
+      framework:
+        description: 'The type of framework or service'
+        required: true
+        default: 'azure-functions'
+        type: choice
+        options:
+          - azure-functions
+          - angular
+          - static-web-app
 
 jobs:
   caller-workflow:
@@ -11,3 +26,4 @@ jobs:
       runs-on: ubuntu-latest
       run-tests: false
       project-folder: .
+      framework: ${{ github.event.inputs.framework }}
