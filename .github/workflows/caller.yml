@@ -29,7 +29,6 @@ jobs:
   caller-workflow:
     uses: missAnkita/Reusable-Workflows/.github/workflows/multilingual-wf.yml@feature/test-multilingual
     with:
-      runs-on: ubuntu-latest
-      run-tests: false
+      #run-tests: false
       working-directory: .
       framework: ${{ github.event.inputs.framework }}
