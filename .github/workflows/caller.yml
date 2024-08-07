@@ -23,7 +23,7 @@ on:
 
 jobs:
   caller-workflow:
-    uses: missAnkita/Reusable-Workflows/.github/workflows/multilingual-wf.yml@main
+    uses: missAnkita/Reusable-Workflows/.github/workflows/multilingual-wf.yml@feature/test-multilingual
     with:
       runs-on: ubuntu-latest
       run-tests: false
