@@ -20,7 +20,6 @@ on:
 
 jobs:
   caller-workflow:
-    name: Call Azure Functions WF
     uses: missAnkita/Reusable-Workflows/.github/workflows/multilingual-wf.yml@main
     with:
       runs-on: ubuntu-latest
