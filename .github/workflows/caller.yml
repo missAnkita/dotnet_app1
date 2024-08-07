@@ -11,12 +11,15 @@ on:
       framework:
         description: 'The type of framework or service'
         required: true
-        default: 'azure-functions'
-        type: choice
-        options:
-          - azure-functions
-          - angular
-          - static-web-app
+        default: azure-functions
+        type: string
+        
+        #or
+       # type: choice
+       # options:
+       #   - azure-functions
+       #   - angular
+       #   - static-web-app
 
 jobs:
   caller-workflow:
