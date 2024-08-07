@@ -21,6 +21,10 @@ on:
        #   - angular
        #   - static-web-app
 
+permissions:
+  id-token: write
+  contents: read 
+
 jobs:
   caller-workflow:
     uses: missAnkita/Reusable-Workflows/.github/workflows/multilingual-wf.yml@feature/test-multilingual
