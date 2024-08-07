@@ -14,9 +14,7 @@ on:
         default: azure-functions
         type: string
 
-permissions:
-  id-token: write
-  contents: read 
+
 
 jobs:
   caller-workflow:
