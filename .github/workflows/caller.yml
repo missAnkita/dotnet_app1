@@ -31,5 +31,5 @@ jobs:
     with:
       runs-on: ubuntu-latest
       run-tests: false
-      project-folder: .
+      working-directory: .
       framework: ${{ github.event.inputs.framework }}
