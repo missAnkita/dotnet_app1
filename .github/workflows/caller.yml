@@ -13,8 +13,11 @@ on:
         required: true
         default: azure-functions
         type: string
-
-
+      function-app-name:
+        description: 'name of the azure function app'
+        required: true
+        type: string 
+        default: test-app0099
 
 jobs:
   caller-workflow:
