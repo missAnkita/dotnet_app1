@@ -26,3 +26,4 @@ jobs:
     with:
       working-directory: .
       framework: ${{ github.event.inputs.framework }}
+      function-app-name: ${{ github.event.inputs.function-app-name }}
