@@ -18,7 +18,8 @@ on:
 
 jobs:
   caller-workflow:
-    uses: missAnkita/Reusable-Workflows/.github/workflows/multilingual-wf.yml@feature/test-multilingual
+    #uses: missAnkita/Reusable-Workflows/.github/workflows/multilingual-wf.yml@feature/test-multilingual
+    uses: missAnkita/Reusable-Workflows/.github/workflows/reusable-dotnet.yml@feature/test-multilingual
     with:
       working-directory: .
       framework: ${{ github.event.inputs.framework }}
