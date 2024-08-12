@@ -11,5 +11,5 @@ jobs:
       with:
         runs-on: ubuntu-latest
         run-tests: false
-        project-folder: .
+        working-directory: .
       secrets: inherit
