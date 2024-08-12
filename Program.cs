@@ -12,3 +12,6 @@ var host = new HostBuilder()
     .Build();
 
 host.Run();
+
+
+echo "hello"
