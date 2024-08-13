@@ -3,6 +3,9 @@ name: Caller WF AZ functions code
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   all:
       name: Call Azure Functions WF
