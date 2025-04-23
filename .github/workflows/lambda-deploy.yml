@@ -7,16 +7,16 @@ on:
         branches: [ "master" ]
     workflow_dispatch:
         inputs:
-            cloud-app-name:
-                description: 'The name of the cloud app resource name (e.g. aws-lambda-function-name, azure-function-name)'
-                required: false
-                type: string 
-                default: lambdaAppDev
-            file-name-to-publish:
-                description: 'specific csproj to publish the project'
-                required: false
-                type: string
-                default: 'azure_functions_app1.csproj'
+            # cloud-app-name:
+            #     description: 'The name of the cloud app resource name (e.g. aws-lambda-function-name, azure-function-name)'
+            #     required: false
+            #     type: string 
+            #     default: lambdaAppDev
+            # file-name-to-publish:
+            #     description: 'specific csproj to publish the project'
+            #     required: false
+            #     type: string
+            #     default: 'azure_functions_app1.csproj'
             dotnet-version:
                 description: 'Version of dotnet to use'
                 type: string
@@ -43,7 +43,7 @@ jobs:
               run: dotnet build --configuration Release --no-restore
 
             - name: dotnet publish for zip      
-              run: dotnet publish ${{ inputs.file-name-to-publish }} --output output --no-restore
+              run: dotnet publish azure_functions_app1.csproj --output output --no-restore
               shell: bash
 
             - name: Tar files to preserve file permissions
@@ -85,5 +85,5 @@ jobs:
                 zip -r extracted-artifact.zip ./output   
                 ls -ll   
                 aws lambda update-function-code \
-                        --function-name ${{ inputs.cloud-app-name }} \
+                        --function-name lambdaAppDev \
                         --zip-file fileb://extracted-artifact.zip
