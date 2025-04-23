@@ -11,7 +11,7 @@ on:
                 description: 'The name of the cloud app resource name (e.g. aws-lambda-function-name, azure-function-name)'
                 required: false
                 type: string 
-                default: 'lambdaAppDev'
+                default: lambdaAppDev
             file-name-to-publish:
                 description: 'specific csproj to publish the project'
                 required: false
@@ -85,5 +85,5 @@ jobs:
                 zip -r extracted-artifact.zip ./output   
                 ls -ll   
                 aws lambda update-function-code \
-                --function-name ${{ inputs.cloud-app-name }} \
-                --zip-file fileb://extracted-artifact.zip
+                        --function-name ${{ inputs.cloud-app-name }} \
+                        --zip-file fileb://extracted-artifact.zip
