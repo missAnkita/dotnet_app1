@@ -68,10 +68,10 @@ jobs:
               with: 
                 name: ${{ inputs.artifact-name }}
 
-            - name: Unzip the Tar to Get Raw Files
-              #if: ${{ inputs.framework-type == 'dotnet' }}
-              run: tar -xf output.tar
-              shell: bash
+            # - name: Unzip the Tar to Get Raw Files
+            #   #if: ${{ inputs.framework-type == 'dotnet' }}
+            #   run: tar -xf output.tar
+            #   shell: bash
 
             - name: Login to AWS 
               uses: aws-actions/configure-aws-credentials@v1
