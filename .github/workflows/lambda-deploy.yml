@@ -51,6 +51,10 @@ jobs:
               run: dotnet publish ${{ inputs.file-name-to-publish }} --output output --no-restore
               shell: bash
 
+            - name: Tar files to preserve file permissions
+              run: tar -cvf output.tar output/
+              shell: bash
+
             - name: Upload General Artifacts
               uses: actions/upload-artifact@v4
               with:
