@@ -43,7 +43,7 @@ jobs:
               run: dotnet build --configuration Release --no-restore
 
             - name: dotnet publish for zip      
-              run: dotnet publish azure_functions_app1.csproj --output output --no-restore
+              run: dotnet publish dotnet_app1.csproj --output output --no-restore
               shell: bash
 
             - name: Tar files to preserve file permissions

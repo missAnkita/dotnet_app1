@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "azure_functions_app1", "azure_functions_app1.csproj", "{5E65BE8B-59A6-44FC-BA14-0D71CEDD5045}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnet_app1", "dotnet_app1.csproj", "{5E65BE8B-59A6-44FC-BA14-0D71CEDD5045}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
