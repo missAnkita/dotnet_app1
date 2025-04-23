@@ -1,0 +1,90 @@
+name: AWS Lambda deploy
+
+permissions:
+  contents: read
+on: 
+    push:
+        branches: [ "master" ]
+    workflow_dispatch:
+        inputs:
+            cloud-app-name:
+                description: 'The name of the cloud app resource name (e.g. aws-lambda-function-name, azure-function-name)'
+                required: false
+                type: string 
+                default: 'lambdaAppDev'
+            file-name-to-publish:
+                description: 'specific csproj to publish the project'
+                required: false
+                type: string
+                default: 'azure_functions_app1.csproj'
+            dotnet-version:
+                description: 'Version of dotnet to use'
+                type: string
+                default: 8.0.x
+            artifact-name:
+                description: 'artifact name'
+                required: false
+                type: string
+                default: 'artifacts'
+
+jobs:
+    build-app:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@v4 
+
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v1
+              with:
+                    dotnet-version: ${{ inputs.dotnet-version }}
+                
+            - name: Restore dependencies
+              shell: bash
+              run: dotnet restore
+              
+            - name: Build
+              shell: bash
+              run: dotnet build --configuration Release --no-restore
+
+            - name: dotnet publish for zip      
+              run: dotnet publish ${{ inputs.file-name-to-publish }} --output output --no-restore
+              shell: bash
+
+            - name: Upload General Artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: ${{ inputs.artifact-name }}
+                  path: output.tar
+    deploy-app: 
+        needs: ["build-app"]
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@v4 
+
+            - name: Download Artifact 
+              uses: actions/download-artifact@v4
+              with: 
+                name: ${{ inputs.artifact-name }}
+
+            - name: Unzip the Tar to Get Raw Files
+              #if: ${{ inputs.framework-type == 'dotnet' }}
+              run: tar -xf output.tar
+              shell: bash
+
+            - name: Login to AWS 
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                aws-region: us-west-2
+
+            - name: Deploy Source Code to AWS Lambda Function
+              shell: bash
+              run: |
+                zip -r extracted-artifact.zip ./output   
+                ls -ll   
+                aws lambda update-function-code \
+                --function-name ${{ inputs.cloud-app-name }} \
+                --zip-file fileb://extracted-artifact.zip
