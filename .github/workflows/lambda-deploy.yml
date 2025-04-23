@@ -48,7 +48,7 @@ jobs:
               run: dotnet build --configuration Release --no-restore
 
             - name: dotnet publish for zip      
-              run: dotnet publish ${{ inputs.file-name-to-publish }} --output output --no-restore
+              run: dotnet publish ${{ inputs.file-name-to-publish }} --output ./output --no-restore
               shell: bash
 
             - name: Tar files to preserve file permissions
