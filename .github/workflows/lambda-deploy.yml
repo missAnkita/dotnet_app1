@@ -48,7 +48,7 @@ jobs:
               run: dotnet build --configuration Release --no-restore
 
             - name: dotnet publish for zip      
-              run: dotnet publish ${{ inputs.file-name-to-publish }} --output ./output --no-restore
+              run: dotnet publish ${{ inputs.file-name-to-publish }} --output output --no-restore
               shell: bash
 
             - name: Tar files to preserve file permissions
@@ -58,7 +58,7 @@ jobs:
             - name: Upload General Artifacts
               uses: actions/upload-artifact@v4
               with:
-                  name: ${{ inputs.artifact-name }}
+                  #name: ${{ inputs.artifact-name }}
                   path: output.tar
     deploy-app: 
         needs: ["build-app"]
@@ -69,8 +69,8 @@ jobs:
 
             - name: Download Artifact 
               uses: actions/download-artifact@v4
-              with: 
-                name: ${{ inputs.artifact-name }}
+            #   with: 
+            #     name: ${{ inputs.artifact-name }}
 
             - name: Unzip the Tar to Get Raw Files
               #if: ${{ inputs.framework-type == 'dotnet' }}
