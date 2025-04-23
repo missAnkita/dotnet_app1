@@ -74,7 +74,7 @@ jobs:
 
             - name: Unzip the Tar to Get Raw Files
               #if: ${{ inputs.framework-type == 'dotnet' }}
-              run: tar -xf output.tar
+              run: tar -xf artifact.tar
               shell: bash
 
             - name: Login to AWS 
